@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/48b4a26d-d045-4ede-a110-080c2c63f227)
-
 # RiboNN: A deep learning model to predict translation efficiency from mRNA sequence
 
 For more information, please see our [RiboNN paper](https://www.biorxiv.org/content/10.1101/2024.08.11.607362v2).
