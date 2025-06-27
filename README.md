@@ -13,16 +13,16 @@ For more information, please see our [RiboNN paper](https://www.biorxiv.org/cont
   # install mamba (https://github.com/conda-forge/miniforge) into "miniforge3/" in the home directory. 
   curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
   bash Miniforge3-$(uname)-$(uname -m).sh -b 
+  ~/miniforge3/bin/mamba shell init 
+  source ~/.bashrc
 
   # clone the repo
-  git clone https://github.com/Sanofi-GitHub/RiboNN.git && cd RiboNN
+  git clone https://github.com/Sanofi-Public/RiboNN.git && cd RiboNN
   
   # install the RiboNN environment
   make install
 
   # activate the riboNN environment
-  ~/miniforge3/bin/mamba shell init 
-  source ~/.bashrc
   mamba activate RiboNN
 
   # create a directory for storing pretrained model weights
