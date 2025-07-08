@@ -298,7 +298,6 @@ class RiboNNDataModule(pl.LightningDataModule):
 
         # Validate cds_sequence
         assert self.df.cds_size.apply(lambda x: x % 3 == 0).all(), "Not all CDS sequences have a length size of 3N!"
-        assert self.df.cds_sequence.apply(lambda x: x[:3] == "ATG").all(), "Not all CDS sequences start with ATG!"
         assert self.df.cds_sequence.apply(lambda x: x[-3:] in ("TAA", "TGA", "TAG")).all(), "Not all CDS sequences end with a stop codon!"
 
         if "tx_id" not in self.df.columns:
