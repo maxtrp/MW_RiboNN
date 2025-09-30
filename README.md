@@ -40,16 +40,18 @@ For more information, please see our [RiboNN paper](https://www.biorxiv.org/cont
    4. Run `make train` at the terminal to start the training process.
   
 - To do transfer learning (using pretrained multi-task models saved in the *models* directory):
-   1. Put the training data in a tab-separated text file in the "data" folder, which already contain an example training data file. The tab-separated text file should have columns named "tx_id" (unique transcript IDs), "utr5_sequence", "cds_sequence" (including start and stop codons), and "utr3_sequence". Alternatively, the file may have columns named "tx_id", "tx_sequence" (full transcript seuquences containing 5'UTR, CDS, and 3'UTR), "utr5_size" (lengths of the 5'UTRs), and "cds_size" (lengths of the CDSs). 
-   2. Edit the path to the training data ("tx_info_path") and other hyperparameters defined in the config/conf.yml file. 
-   3. Edit the code below line 126 of src/main.py to control how the model will be trained.
-   4. Run `make transfer_learning` at the terminal to start the training process.
+   1. Download weights.zip from https://zenodo.org/records/15375573, unzip it, and put its contents (model weights and the runs.csv file) in the *models* directory. 
+   2. Put the training data in a tab-separated text file in the "data" folder, which already contain an example training data file. The tab-separated text file should have columns named "tx_id" (unique transcript IDs), "utr5_sequence", "cds_sequence" (including start and stop codons), and "utr3_sequence". Alternatively, the file may have columns named "tx_id", "tx_sequence" (full transcript seuquences containing 5'UTR, CDS, and 3'UTR), "utr5_size" (lengths of the 5'UTRs), and "cds_size" (lengths of the CDSs). 
+   3. Edit the path to the training data ("tx_info_path") and other hyperparameters defined in the config/conf.yml file. 
+   4. Edit the code below line 126 of src/main.py to control how the model will be trained.
+   5. Run `make transfer_learning` at the terminal to start the training process.
   
 - To make predictions after downloading the model weights (state_dict) into the *models* directory:
-  1. Please create a tab-separated text file with columns named "tx_id" (unique transcript IDs), "utr5_sequence", "cds_sequence" (including start and stop codons), and "utr3_sequence". Alternatively, the file may have columns named "tx_id", "tx_sequence" (full transcript seuquences containing 5'UTR, CDS, and 3'UTR), "utr5_size" (lengths of the 5'UTRs), and "cds_size" (lengths of the CDSs). 
-  2. Save the text file as "prediction_input.txt" in the "data" folder. An example input file can be found in the "data" folder.
-  3. (Optional) Edit the code below line 173 of src/main.py to control how the model will be used for prediction.
-  4. Run `make predict` at the terminal.
-  5. The predictions will be automatically written to a tab-separated file named "prediction_output.txt" in the "results" folder. Pre-existing files with the same name will be overwritten.
+  1. Download weights.zip from https://zenodo.org/records/15375573, unzip it, and put its contents (model weights and the runs.csv file) in the *models* directory. 
+  2. Please create a tab-separated text file with columns named "tx_id" (unique transcript IDs), "utr5_sequence", "cds_sequence" (including start and stop codons), and "utr3_sequence". Alternatively, the file may have columns named "tx_id", "tx_sequence" (full transcript seuquences containing 5'UTR, CDS, and 3'UTR), "utr5_size" (lengths of the 5'UTRs), and "cds_size" (lengths of the CDSs). 
+  3. Save the text file as "prediction_input.txt" in the "data" folder. An example input file can be found in the "data" folder.
+  4. (Optional) Edit the code below line 173 of src/main.py to control how the model will be used for prediction.
+  5. Run `make predict` at the terminal.
+  6. The predictions will be automatically written to a tab-separated file named "prediction_output.txt" in the "results" folder. Pre-existing files with the same name will be overwritten.
   
   **Note:** Input transcripts with 5'UTRs longer than 1,381 nt or combined CDS and 3'UTR sizes larger than 11,937 nt will be excluded in the output.   
