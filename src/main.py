@@ -168,12 +168,13 @@ def main(args) -> None:
         # test folds are then concatenated.
         input_file = "data/prediction_input1.txt"
         # input_file = "data/prediction_input2.txt" # Alternative input file
-        output_file = "results/prediction_output.txt"
+        output_file = f"results/{args.species}/prediction_output.txt"
         Path(output_file).parent.mkdir(parents=True, exist_ok=True)
 
-        run_df = pd.read_csv("models/runs.csv")
+        run_df = pd.read_csv(f"models/{args.species}/runs.csv")
         predictions = predict_using_nested_cross_validation_models(
             input_file, 
+            args.species,
             run_df, 
             5,
             batch_size = 32, 
@@ -190,6 +191,7 @@ def main(args) -> None:
 
         # Write predictions to disk
         predicted_TE.to_csv(output_file, index=False, sep="\t")
+        print(f"Predictions written to {output_file}.")
 
 
 
@@ -209,7 +211,9 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--predict", default=False, action="store_true", help="Predictions"
+        "--predict", default=False, action="store_true", help="Prediction TE using pretrained human or mouse models"
     )
+
+    parser.add_argument("species", action="store", nargs="?", default="human", type=str, choices=["human", "mouse"], help="Species to use for prediction (default: human)")
 
     main(parser.parse_args())

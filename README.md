@@ -44,8 +44,8 @@ For more information, please see our [RiboNN paper](https://www.biorxiv.org/cont
 - To make predictions using pretrained multi-task models automatically downloaded from https://zenodo.org/records/17258709:
   1. Create a tab-separated text file with columns named "tx_id" (unique transcript IDs), "utr5_sequence", "cds_sequence" (including start and stop codons), and "utr3_sequence". Alternatively, the file may have columns named "tx_id", "tx_sequence" (full transcript seuquences containing 5'UTR, CDS, and 3'UTR), "utr5_size" (lengths of the 5'UTRs), and "cds_size" (lengths of the CDSs). 
   2. Save the text file as "prediction_input.txt" in the "data" folder. An example input file can be found in the "data" folder.
-  3. (Optional) Edit the code below line 173 of src/main.py to control how the model will be used for prediction.
-  4. Run `make predict` at the terminal.
-  5. The predictions will be automatically written to a tab-separated file named "prediction_output.txt" in the "results" folder. Pre-existing files with the same name will be overwritten.
+  3. (Optional) Edit the code below line 163 of src/main.py to control how the model will be used for prediction.
+  4. To use human models for prediction, run `make predict_human` at the terminal. To use mouse models for prediction, run `make predict_mouse`.
+  5. The predictions will be automatically written to a tab-separated file named "prediction_output.txt" in the "results/human" or "results/mouse" folder. Pre-existing files with the same name will be overwritten.
   
   **Note:** Input transcripts with 5'UTRs longer than 1,381 nt or combined CDS and 3'UTR sizes larger than 11,937 nt will be excluded in the output.   
