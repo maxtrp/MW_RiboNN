@@ -8,3 +8,4 @@ lightning_logs/
 lightning_checkpoints/
 mlruns/
 results/
+models/

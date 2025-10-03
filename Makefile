@@ -1,13 +1,21 @@
 install:
-	~/miniforge3/bin/mamba env create -f environment.yml
+	mamba env create -f environment.yml -y
 
 train:
 	export MLFLOW_TRACKING_URI=sqlite:///mlruns.db
 	python3 -m src.main --train
 
 transfer_learning:
-	export MLFLOW_TRACKING_URI=sqlite:///mlruns.db
+	export MLFLOW_TRACKING_URI=sqlite:///mlruns.db; \
+	mkdir -p tmp; \
+	wget -t 0 -O tmp/weights.zip https://zenodo.org/records/17258709/files/weights.zip?download=1; \
+	unzip tmp/weights.zip -d models/; \
+	rm -r tmp; \
 	python3 -m src.main --transfer_learning
 
 predict:
+	mkdir -p tmp; \
+	wget -t 0 -O tmp/weights.zip https://zenodo.org/records/17258709/files/weights.zip?download=1; \
+	unzip tmp/weights.zip -d models/; \
+	rm -r tmp; \
 	python3 -m src.main --predict
