@@ -35,7 +35,7 @@ def unfreeze_batchnorm_layers(model):
 
 def create_transfer_learning_model(
     config: Dict,
-    local_state_dict_path: str = "models/0ad046d67ba7481881d5c7f918acedb4/model.pth",
+    local_state_dict_path: str = "models/human/0ad046d67ba7481881d5c7f918acedb4/model.pth",
 ) -> pl.LightningModule:
 
     # Create an instance of the pretrained multi-task model
@@ -169,7 +169,7 @@ def transfer_learning(
                     else:
                         model = create_transfer_learning_model(
                             config,
-                            f"models/{sub_run_df.run_id.values[0]}/state_dict.pth"
+                            f"models/human/{sub_run_df.run_id.values[0]}/state_dict.pth"
                         )
                     
                     # Train the head

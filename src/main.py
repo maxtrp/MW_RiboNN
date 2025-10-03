@@ -114,9 +114,9 @@ def main(args) -> None:
         )
 
 
-    # Transfer learning using pretrained models
+    # Transfer learning using pretrained human models
     if args.transfer_learning:
-        pretrain_run_df = pd.read_csv("models/runs.csv")
+        pretrain_run_df = pd.read_csv("models/human/runs.csv")
         config = load_config("config/conf.yml")
         config["pad_5_prime"] = True
         config["with_NAs"] = False
