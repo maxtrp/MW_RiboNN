@@ -166,9 +166,11 @@ def main(args) -> None:
         # same test fold (as indicated by the "fold" column) are averaged 
         # across the models. The averaged predictions by models using different
         # test folds are then concatenated.
-        input_file = "data/prediction_input1.txt"
+        # input_file = "data/prediction_input1.txt"
         # input_file = "data/prediction_input2.txt" # Alternative input file
-        output_file = f"results/{args.species}/prediction_output.txt"
+        input_file = args.input_file
+        # output_file = f"results/{args.species}/prediction_output.txt"
+        output_file = args.output_file
         Path(output_file).parent.mkdir(parents=True, exist_ok=True)
 
         run_df = pd.read_csv(f"models/{args.species}/runs.csv")
@@ -215,5 +217,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("species", action="store", nargs="?", default="human", type=str, choices=["human", "mouse"], help="Species to use for prediction (default: human)")
+
+    parser.add_argument(
+        "--input_file", default="data/prediction_input1.txt"
+    )
+
+    parser.add_argument(
+        "--output_file", default="results/prediction_output.txt"
+    )
 
     main(parser.parse_args())
